@@ -147,17 +147,7 @@ extern int			DebugLevel;
 extern UINT32		DebugCategory;
 extern UINT32		DebugSubCategory[DBG_LVL_MAX + 1][32];
 
-#ifdef DBG
-#define MTWF_LOG(Category, SubCategory, Level, Fmt)	\
-	do {	\
-		if ((0x1 << Category) & (DebugCategory))	\
-			if ((SubCategory) & (DebugSubCategory[Level][Category])) \
-				MTWF_PRINT Fmt; \
-	} while (0)
-
-#else
 #define MTWF_LOG(Category, SubCategory, Level, Fmt)
-#endif
 
 void hex_dump(char *str, unsigned char *pSrcBufVA, unsigned int SrcBufLen);
 void hex_dump_with_lvl(char *str, unsigned char *pSrcBufVA, unsigned int SrcBufLen, int dbglvl);
